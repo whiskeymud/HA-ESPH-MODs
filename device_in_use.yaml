@@ -42,7 +42,7 @@ number:
 
 binary_sensor:
   - platform: template
-    name: "${friendly_name} – Device In Use"
+    name: "${friendly_name} – Active Load"
     id: device_in_use
     lambda: |-
       return id(power).state > id(device_in_use_threshold).state;
