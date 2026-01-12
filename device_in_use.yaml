@@ -1,11 +1,41 @@
 # packages/device_in_use.yaml
 
-binary_sensor:
+number:
   - platform: template
-    name: "${friendly_name} – Device In Use"
-    id: device_in_use
-    lambda: |-
-      return id(power).state > ${device_in_use_threshold};
-    filters:
-      - delayed_on: ${device_in_use_on_delay}
-      - delayed_off: ${device_in_use_off_delay}
+    name: "${friendly_name} Device In Use Threshold"
+    id: device_in_use_threshold
+    entity_category: config
+    unit_of_measurement: W
+    mode: box
+    min_value: 1
+    max_value: 500
+    step: 1
+    initial_value: 20
+    restore_value: true
+    optimistic: true
+
+  - platform: template
+    name: "${friendly_name} Device In Use On Delay"
+    id: device_in_use_on_delay
+    entity_category: config
+    unit_of_measurement: s
+    mode: box
+    min_value: 0
+    max_value: 600
+    step: 5
+    initial_value: 30
+    restore_value: true
+    optimistic: true
+
+  - platform: template
+    name: "${friendly_name} Device In Use Off Delay"
+    id: device_in_use_off_delay
+    entity_category: config
+    unit_of_measurement: s
+    mode: box
+    min_value: 0
+    max_value: 3600
+    step: 30
+    initial_value: 600
+    restore_value: true
+    optimistic: true
