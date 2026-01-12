@@ -45,7 +45,7 @@ binary_sensor:
     name: "${friendly_name} - Active Load"
     id: device_in_use
     lambda: |-
-      return id(power).state > id(device_in_use_threshold).state;
+      return id(scale_power).state > id(device_in_use_threshold).state;
     filters:
       - delayed_on: !lambda "return (uint32_t)(id(device_in_use_on_delay).state * 1000);"
       - delayed_off: !lambda "return (uint32_t)(id(device_in_use_off_delay).state * 1000);"
