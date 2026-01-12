@@ -1,0 +1,11 @@
+# packages/device_in_use.yaml
+
+binary_sensor:
+  - platform: template
+    name: "${friendly_name} – Device In Use"
+    id: device_in_use
+    lambda: |-
+      return id(power).state > ${device_in_use_threshold};
+    filters:
+      - delayed_on: ${device_in_use_on_delay}
+      - delayed_off: ${device_in_use_off_delay}
